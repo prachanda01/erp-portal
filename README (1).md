@@ -8,27 +8,6 @@ A production-grade web application for wholesale/distribution businesses to mana
 **Live Backend (Health Check):** https://erp-portal-pqpl.onrender.com/health
 **Live API Docs (Swagger):** https://erp-portal-pqpl.onrender.com/api-docs
 
----
-
-## Table of Contents
-
-1. [Business Context](#business-context)
-2. [Tech Stack](#tech-stack)
-3. [Architecture](#architecture)
-4. [Data Model](#data-model)
-5. [Core Modules](#core-modules)
-6. [API Reference](#api-reference)
-7. [Project Structure](#project-structure)
-8. [Local Setup](#local-setup)
-9. [Docker Setup](#docker-setup)
-10. [Environment Variables](#environment-variables)
-11. [Deployment](#deployment)
-12. [Test Credentials](#test-credentials)
-13. [Assumptions](#assumptions)
-14. [Known Limitations](#known-limitations)
-15. [Bonus Features Implemented](#bonus-features-implemented)
-
----
 
 ## Business Context
 
@@ -285,54 +264,8 @@ npm run dev              # starts on Vite's default port (e.g. http://localhost:
 
 Set `frontend/.env` (copy from `.env.example`) so `VITE_API_BASE_URL` points at your backend, e.g. `http://localhost:5000/api` for local dev.
 
-### Tests
-```bash
-cd backend
-npm test        # jest + supertest, run with --runInBand
-```
 
----
 
-## Docker Setup
-
-From the repository root:
-
-```bash
-docker-compose up --build -d
-```
-
-This starts:
-- **Postgres** on `5432` (`minierp` database)
-- **Backend** on `5000`, connected to the Dockerized Postgres instance
-- **Frontend** on `80`
-
-Access the app at `http://localhost:80`, and the API at `http://localhost:5000/api`.
-
----
-
-## Environment Variables
-
-**`backend/.env`**
-```
-PORT=5000
-NODE_ENV=production
-DATABASE_URL="postgresql://user:password@host:5432/dbname?schema=public"
-JWT_ACCESS_SECRET="your-production-jwt-access-secret"
-JWT_REFRESH_SECRET="your-production-jwt-refresh-secret"
-JWT_ACCESS_EXPIRES_IN="15m"
-JWT_REFRESH_EXPIRES_IN="7d"
-CORS_ORIGIN="https://your-frontend-domain.vercel.app"
-```
-For local dev, `DATABASE_URL` can point at a local SQLite file instead (see `schema.prisma`).
-
-**`frontend/.env`**
-```
-VITE_API_BASE_URL="http://localhost:5000/api"
-```
-
-Secrets are never committed; only `.env.example` files are tracked in the repo.
-
----
 
 ## Deployment
 
