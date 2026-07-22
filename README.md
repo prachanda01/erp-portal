@@ -41,9 +41,10 @@ A production-grade, enterprise web application built for modern wholesale, distr
 - Comprehensive system audit logs for critical entity changes and security events.
 
 ---
-#LIVE DEMO:
-frontend :https://erpportal-ten.vercel.app/login
-backend  :https://erp-portal-pqpl.onrender.com
+## 🚀 Live Demo
+- **Frontend Web App**: [https://erpportal-ten.vercel.app](https://erpportal-ten.vercel.app)
+- **Backend API**: [https://erp-portal-pqpl.onrender.com](https://erp-portal-pqpl.onrender.com)
+- **Swagger Documentation**: [https://erp-portal-pqpl.onrender.com/api-docs](https://erp-portal-pqpl.onrender.com/api-docs)
 ## 🔑 Pre-configured Demo Accounts
 
 | Role | Email | Password | Allowed Capabilities |
