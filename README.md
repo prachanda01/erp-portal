@@ -43,7 +43,7 @@ A production-grade, enterprise web application built for modern wholesale, distr
 ---
 #LIVE DEMO:
 frontend :https://erpportal-ten.vercel.app/login
-backend  :https://erp-operations-portal.onrender.com
+backend  :https://erp-portal-pqpl.onrender.com
 ## 🔑 Pre-configured Demo Accounts
 
 | Role | Email | Password | Allowed Capabilities |
