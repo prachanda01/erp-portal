@@ -3,11 +3,6 @@
 
 A production-grade web application for wholesale/distribution businesses to manage customer relationships (CRM), warehouse stock, sales challans with automatic inventory deduction, and role-based operations across Admin, Sales, Warehouse, and Accounts teams.
 
-**Repository:** https://github.com/prachanda01/erp-portal
-**Live Frontend:** https://erp-portal-git-master-prachanda.vercel.app
-**Live Backend (Health Check):** https://erp-portal-pqpl.onrender.com/health
-**Live API Docs (Swagger):** https://erp-portal-pqpl.onrender.com/api-docs
-
 
 ## Business Context
 
