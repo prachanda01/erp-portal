@@ -126,49 +126,6 @@ flowchart TB
     style Data fill:#e6f4ea,stroke:#34a853
 ```
 
-### Sales Challan lifecycle (core business logic)
-
-Confirming a challan validates stock for **every line item first**, then deducts stock only if all items have sufficient quantity — preventing partial/inconsistent deductions. Cancelling a confirmed challan restores stock. Both actions write an immutable `stock_movements` entry and an `audit_logs` entry.
-
-```mermaid
-sequenceDiagram
-    participant U as Sales/Accounts User
-    participant F as Frontend
-    participant C as ChallanController
-    participant S as ChallanService
-    participant Inv as InventoryService
-    participant D as Database
-
-    U->>F: Create challan (customer + line items)
-    F->>C: POST /api/challans
-    C->>S: create()
-    S->>D: Snapshot customer + product data, save as Draft
-    D-->>S: Challan (DRAFT)
-    S-->>F: 201 Created
-
-    U->>F: Confirm challan
-    F->>C: PATCH /api/challans/:id/status {status: CONFIRMED}
-    C->>S: updateStatus()
-    S->>D: Check inventory for ALL items
-    alt All items have sufficient stock
-        S->>Inv: adjustStock(product, qty, OUT) for each item
-        Inv->>D: Reduce inventory, log stock_movement
-        S->>D: Update challan status = CONFIRMED
-        S->>D: Write audit log
-        S-->>F: 200 OK
-    else Any item has insufficient stock
-        S-->>F: Error - "Stock deficit for product X. Available: n, Required: m"
-    end
-
-    U->>F: Cancel a CONFIRMED challan
-    F->>C: PATCH /api/challans/:id/status {status: CANCELLED}
-    C->>S: updateStatus()
-    S->>Inv: adjustStock(product, qty, IN) for each item — restores stock
-    S->>D: Update status = CANCELLED, write audit log
-    S-->>F: 200 OK
-```
-
----
 
 ## Data Model
 
