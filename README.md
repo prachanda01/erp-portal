@@ -65,7 +65,7 @@ A production-grade, enterprise web application built for modern wholesale, distr
 [https://github.com/prachanda01/erp-portal](https://github.com/prachanda01/erp-portal)
 
 ### 2. Live frontend URL
-[https://erpportal-ten.vercel.app](https://erpportal-ten.vercel.app)
+[https://erp-portal-git-master-prachanda.vercel.app](https://erp-portal-git-master-prachanda.vercel.app)
 
 ### 3. Live backend API URL
 [https://erp-portal-pqpl.onrender.com](https://erp-portal-pqpl.onrender.com)
