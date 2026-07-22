@@ -1,0 +1,22 @@
+# Node.js dependencies
+node_modules/
+
+# Production build output
+dist/
+
+# Environment variables & secrets
+.env
+*.env
+
+# SQLite local database
+*.db
+*.db-journal
+dev.db
+dev.db-journal
+prisma/dev.db
+prisma/dev.db-journal
+
+# Logs & Tests
+logs/
+*.log
+coverage/

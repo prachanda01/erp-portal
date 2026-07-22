@@ -1,0 +1,124 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "NexusERP Operations Suite API",
+    "version": "1.0.0",
+    "description": "API documentation for NexusERP Operations Suite"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000/api",
+      "description": "Development Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/auth/login": {
+      "post": {
+        "summary": "User Login",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string", "example": "admin@minierp.com" },
+                  "password": { "type": "string", "example": "Admin123!" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Login Successful" },
+          "401": { "description": "Invalid credentials" }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "summary": "Refresh Access Token",
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "New access token issued" }
+        }
+      }
+    },
+    "/customers": {
+      "get": {
+        "summary": "List Customers with Search, Pagination & Filtering",
+        "responses": { "200": { "description": "Customer list returned" } }
+      },
+      "post": {
+        "summary": "Create New Customer",
+        "responses": { "201": { "description": "Customer created" } }
+      }
+    },
+    "/products": {
+      "get": {
+        "summary": "List Products",
+        "responses": { "200": { "description": "Products list returned" } }
+      },
+      "post": {
+        "summary": "Create New Product",
+        "responses": { "201": { "description": "Product created" } }
+      }
+    },
+    "/inventory/adjust": {
+      "post": {
+        "summary": "Stock Adjustment (IN / OUT)",
+        "responses": { "200": { "description": "Stock adjusted" } }
+      }
+    },
+    "/challans": {
+      "get": {
+        "summary": "List Sales Challans",
+        "responses": { "200": { "description": "Challans list returned" } }
+      },
+      "post": {
+        "summary": "Create Sales Challan (Draft)",
+        "responses": { "201": { "description": "Challan created" } }
+      }
+    },
+    "/challans/{id}/status": {
+      "patch": {
+        "summary": "Update Sales Challan Status (DRAFT -> CONFIRMED -> CANCELLED)",
+        "responses": { "200": { "description": "Status updated" } }
+      }
+    },
+    "/dashboard/summary": {
+      "get": {
+        "summary": "Get Executive Dashboard Metrics & Analytics",
+        "responses": { "200": { "description": "Metrics payload returned" } }
+      }
+    }
+  }
+}
