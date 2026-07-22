@@ -40,21 +40,6 @@ A production-grade, enterprise web application built for modern wholesale, distr
 - JWT access tokens (15-minute validity) & DB-backed revocable refresh tokens (7-day validity).
 - Comprehensive system audit logs for critical entity changes and security events.
 
----
-## 🚀 Live Demo
-- **Frontend Web App**: [https://erpportal-ten.vercel.app](https://erpportal-ten.vercel.app)
-- **Backend API**: [https://erp-portal-pqpl.onrender.com](https://erp-portal-pqpl.onrender.com)
-- **Swagger Documentation**: [https://erp-portal-pqpl.onrender.com/api-docs](https://erp-portal-pqpl.onrender.com/api-docs)
-## 🔑 Pre-configured Demo Accounts
-
-| Role | Email | Password | Allowed Capabilities |
-| :--- | :--- | :--- | :--- |
-| **Admin** | `admin@minierp.com` | `Admin123!` | Full superuser access, user management, audit logs, and record deletion |
-| **Sales Exec** | `sales@minierp.com` | `Sales123!` | Manage customer CRM, log follow-up notes, and create sales challans |
-| **Warehouse Lead** | `warehouse@minierp.com` | `Warehouse123!` | Manage product catalog, minimum stock alerts, and manual stock adjustments |
-| **Accounts Manager** | `accounts@minierp.com` | `Accounts123!` | View financial summaries, inspect audit logs, and export reports |
-
----
 
 ## 🛠️ Tech Stack
 
