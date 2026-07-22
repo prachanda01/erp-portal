@@ -73,77 +73,65 @@ backend  :https://erp-portal-pqpl.onrender.com
 
 ---
 
-## 📄 Submission Documentation
+## 📄 Submission Requirements
 
-As requested by the Case Study PDF, below is the required documentation for setup, environment variables, local execution, deployment, and assumptions.
+As requested by the Case Study PDF, here are the completed requirements:
 
-### 1. How the server was set up
-The backend server is built using **Node.js** and **Express.js** with **TypeScript**.
-- **Architecture**: It uses a layered controller-service-route architecture for separation of concerns.
-- **Database ORM**: **Prisma** is used to manage the database schema. Local development uses **SQLite** for zero-configuration, while production uses **PostgreSQL**.
-- **Authentication**: JWT is used for stateless authentication. Passwords are encrypted using `bcryptjs`.
-- **Validation**: All incoming API requests are validated using **Zod** middleware to prevent bad data.
-- **Docker**: The entire stack (Frontend, Backend, PostgreSQL) is containerized via `Dockerfile` and orchestrated via `docker-compose.yml`.
+### 1. GitHub repository link
+[https://github.com/prachanda01/erp-portal](https://github.com/prachanda01/erp-portal)
 
-### 2. How environment variables are managed
-Environment variables are managed using `.env` files locally and cloud dashboards (Vercel/Render) in production. `.env.example` files are provided in both directories.
+### 2. Live frontend URL
+[https://erpportal-ten.vercel.app](https://erpportal-ten.vercel.app)
 
-**Backend (`backend/.env`)** requires:
-- `PORT`: Port the server runs on (e.g., 5000).
-- `NODE_ENV`: `development` or `production`.
-- `DATABASE_URL`: Connection string to PostgreSQL or SQLite.
-- `JWT_SECRET` / `JWT_EXPIRES_IN`: Secrets and timings for Access tokens.
-- `JWT_REFRESH_SECRET` / `JWT_REFRESH_EXPIRES_IN`: Secrets and timings for Refresh tokens.
-- `CORS_ORIGIN`: Allowed frontend origin (e.g., `http://localhost:5173`).
+### 3. Live backend API URL
+[https://erp-portal-pqpl.onrender.com](https://erp-portal-pqpl.onrender.com)
 
-**Frontend (`frontend/.env`)** requires:
-- `VITE_API_BASE_URL`: URL to the backend REST API (e.g., `http://localhost:5000/api`).
+### 4. Test login credentials for all roles
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| **Admin** | `admin@minierp.com` | `Admin123!` |
+| **Sales** | `sales@minierp.com` | `Sales123!` |
+| **Warehouse** | `warehouse@minierp.com` | `Warehouse123!` |
+| **Accounts** | `accounts@minierp.com` | `Accounts123!` |
 
-### 3. How to run the project locally
-You can run the project locally using two methods: Standard Node.js OR Docker.
+### 5. Postman collection or API documentation
+- **Live Swagger UI**: [https://erp-portal-pqpl.onrender.com/api-docs](https://erp-portal-pqpl.onrender.com/api-docs)
+- **Postman Collection**: Located in the repository at `backend/postman_collection.json`.
 
-**Method A: Standard Node.js (Requires Node v18+)**
+### 6. README with setup and deployment instructions
+#### Local Setup (Standard Node.js)
 1. **Backend**:
    - `cd backend`
    - `npm install`
-   - `npx prisma generate` (Generates Prisma Client)
-   - `npx prisma db push` (Pushes schema to local SQLite)
-   - `npm run prisma:seed` (Seeds enterprise sample data)
-   - `npm run dev` (Starts backend on port 5000)
+   - `npx prisma generate`
+   - `npx prisma db push` (Uses local SQLite for zero config)
+   - `npm run prisma:seed`
+   - `npm run dev`
 2. **Frontend**:
-   - Open a second terminal window
    - `cd frontend`
    - `npm install`
-   - `npm run dev` (Starts frontend on port 5173)
+   - `npm run dev`
 
-**Method B: Docker Compose (Requires Docker)**
-- From the root directory, simply run:
-  `docker-compose up --build -d`
+#### Local Setup (Docker)
+- From the root directory: `docker-compose up --build -d`
 - Access Frontend on `http://localhost:80` and Backend API on `http://localhost:5000`.
 
-### 4. How to deploy the project
-The repository includes configuration files for free cloud deployment:
+#### Environment Variables
+- `backend/.env.example` and `frontend/.env.example` are provided.
+- Backend requires: `PORT`, `NODE_ENV`, `DATABASE_URL`, `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `CORS_ORIGIN`.
+- Frontend requires: `VITE_API_BASE_URL`.
 
-**Deploy Frontend to Vercel**:
-1. Push repository to GitHub.
-2. Go to Vercel, Import project, choose `frontend` as Root Directory.
-3. Framework Preset: Vite.
-4. Set Environment Variable: `VITE_API_BASE_URL` to your live backend URL.
-5. Click **Deploy**. (The `vercel.json` file handles client-side routing fallback).
+#### Deployment Instructions
+- **Frontend (Vercel)**: Import `frontend` directory, set Framework to Vite, add `VITE_API_BASE_URL` pointing to the backend.
+- **Backend (Render)**: Connect repo, Render automatically uses `render.yaml` Blueprint to provision the Node.js Web Service and PostgreSQL database.
 
-**Deploy Backend to Render**:
-1. Push repository to GitHub.
-2. Go to Render Dashboard, click **New Blueprint**, and connect your repo.
-3. Render automatically detects the `render.yaml` file in the root.
-4. It will instantly provision a PostgreSQL database and deploy the Node.js Web Service automatically, setting up the necessary Database URLs internally.
+### 7. Short explanation of architecture
+- **Backend**: Node.js & Express.js with TypeScript using a layered controller-service-route architecture. Validates requests via Zod. Uses Prisma ORM to interact with a PostgreSQL database in production (or SQLite locally).
+- **Frontend**: React 18 & TypeScript with Vite. Uses Tailwind CSS for styling, React Router DOM for navigation, and TanStack Query (React Query) for state management and API caching.
+- **Authentication**: Stateless JWT access tokens paired with database-backed refresh tokens and bcrypt password hashing.
 
-### 5. Any assumptions made
-1. **Multi-Warehouse Support:** The requirements mentioned "Location/warehouse". I assumed it would be best to create a dedicated `Warehouse` database model rather than a raw string, to allow for scalable multi-location inventory.
-2. **Soft Deletions:** Rather than permanently deleting critical records (like Customers or Products), the system utilizes `isActive` soft-deletes to preserve relational integrity for historical Sales Challans and Audit Logs.
-3. **Database Selection:** For a seamless local reviewer experience without forcing the reviewer to install PostgreSQL locally, the system uses SQLite by default via `schema.prisma`. However, for production deployment, a robust PostgreSQL schema (`schema.postgres.prisma`) is provided and configured via `render.yaml` and `docker-compose.yml`.
-4. **Challan Validation:** It is assumed that stock levels cannot go into negative values. If a Draft Challan is confirmed and the stock is insufficient, the transaction rolls back and returns a 400 error.
+### 8. Known limitations or incomplete parts
+- **Multi-Warehouse Logic**: Currently simplified. Advanced stock transfers between individual warehouses are partially implemented.
+- **Invoice PDF Export**: The system supports client-side CSV exports for reporting, but PDF generation for Invoices (listed as a bonus point) is incomplete.
+- **AWS S3 Uploads**: Image uploads for products are not yet implemented.
 
----
-
-## 🔌 API Documentation
-A Postman collection is located at `backend/postman_collection.json`. When the backend runs locally, interactive Swagger OpenAPI documentation is available at `http://localhost:5000/api-docs`.
