@@ -59,9 +59,7 @@ A production-grade, enterprise web application built for modern wholesale, distr
 
 ---
 
-## 📄 Submission Requirements
-
-As requested by the Case Study PDF, here are the completed requirements:
+## 📄 links :
 
 ### 1. GitHub repository link
 [https://github.com/prachanda01/erp-portal](https://github.com/prachanda01/erp-portal)
@@ -84,7 +82,7 @@ As requested by the Case Study PDF, here are the completed requirements:
 - **Live Swagger UI**: [https://erp-portal-pqpl.onrender.com/api-docs](https://erp-portal-pqpl.onrender.com/api-docs)
 - **Postman Collection**: Located in the repository at `backend/postman_collection.json`.
 
-### 6. README with setup and deployment instructions
+### 6.setup and deployment instructions
 #### Local Setup (Standard Node.js)
 1. **Backend**:
    - `cd backend`
