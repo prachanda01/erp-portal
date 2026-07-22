@@ -68,7 +68,7 @@ A production-grade, enterprise web application built for modern wholesale, distr
 [https://erp-portal-git-master-prachanda.vercel.app](https://erp-portal-git-master-prachanda.vercel.app)
 
 ### 3. Live backend API URL
-[https://erp-portal-pqpl.onrender.com](https://erp-portal-pqpl.onrender.com)
+[https://erp-portal-pqpl.onrender.com/health](https://erp-portal-pqpl.onrender.com/health)
 
 ### 4. Test login credentials for all roles
 | Role | Email | Password |
